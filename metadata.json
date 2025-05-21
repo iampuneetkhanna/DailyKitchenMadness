@@ -1,0 +1,7 @@
+{
+  "name": "Grocery Listener AI",
+  "description": "Listens to kitchen conversations in Hindi, identifies grocery items needed, and prepares a list to send via WhatsApp.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

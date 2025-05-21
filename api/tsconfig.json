@@ -1,0 +1,20 @@
+
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2020", // Adjusted for Node.js LTS versions often used in Azure Functions
+    "outDir": "dist",
+    "rootDir": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    // Add types for Azure Functions and Node
+    "types": ["node", "@azure/functions"]
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
