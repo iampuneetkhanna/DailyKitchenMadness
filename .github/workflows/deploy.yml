@@ -1,0 +1,56 @@
+name: Deploy Vite Frontend to Pages
+
+on:
+  push:
+    branches: ['main'] # Or 'master' if that's your default branch
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  build-frontend:
+    name: Build Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Match Node.js version if specified in your package.json engines
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json' # Or '**/yarn.lock'
+
+      - name: Install dependencies
+        run: npm install # This runs 'npm install' in your project root
+
+      - name: Build project
+        run: npm run build # This runs 'npm run build' from your root package.json
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist' # Vite's default output directory
+
+  deploy-frontend:
+    name: Deploy Frontend to Pages
+    needs: build-frontend
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

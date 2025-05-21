@@ -1,24 +1,46 @@
-# Logs
-logs
-*.log
+# Node modules
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Vite build output
+dist/
+.vite/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
+# TypeScript cache
+*.tsbuildinfo
+
+# Local Environment Variables
+.env
+.env*.local
+.env.*.local
+!.env.example
+
+# IDE and editor directories
+.idea/
+.vscode/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Test Output
+coverage/
+nyc_output/
+
+# API specific (Azure Functions)
+api/node_modules/
+api/dist/
+api/.funcignore # If you generate one, though .gitignore usually covers it
+api/local.settings.json # Sensitive, should not be committed
+
+# Log files
+logs
+*.log
