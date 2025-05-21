@@ -38,8 +38,8 @@ nyc_output/
 # API specific (Azure Functions)
 api/node_modules/
 api/dist/
-api/.funcignore # If you generate one, though .gitignore usually covers it
-api/local.settings.json # Sensitive, should not be committed
+api/.funcignore
+api/local.settings.json
 
 # Log files
 logs
